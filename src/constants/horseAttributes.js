@@ -45,3 +45,19 @@ export const HORSE_NAMES = [
   'Bret Hanover',
   'Spectacular Bid',
 ];
+
+export const HORSE_TABLE_COLUMNS = [
+  {
+    label: 'Name',
+    field: 'name',
+  },
+  {
+    label: 'Condition',
+    field: 'condition',
+    type: 'number',
+  },
+  {
+    label: 'Color',
+    field: 'color',
+  },
+];

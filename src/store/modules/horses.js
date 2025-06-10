@@ -26,7 +26,7 @@ const mutations = {
 };
 
 const actions = {
-  generateHorses({ commit }) {
+  async generateHorses({ commit }) {
     const horses = [];
 
     for (let i = 1; i <= MAX_HORSES; i++) {

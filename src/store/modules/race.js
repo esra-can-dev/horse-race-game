@@ -1,51 +1,70 @@
-// store/modules/horses.js
-
-import { HORSE_COLORS, HORSE_NAMES, MAX_HORSES } from '@/constants/horseAttributes';
+import { ROUND_DISTANCES } from '@/constants/raceAttributes';
 
 const state = () => ({
-  horses: [],
+  rounds: [],
+  currentRoundNumber: 0,
+  isRunning: false,
 });
 
 const getters = {
-  // getAllHorses(state) {
-  //   return state.horses;
-  // },
-  // getHorseById: (state) => (id) => {
-  //   return state.horses.find((horse) => horse.id === id);
-  // },
+  getRounds(state) {
+    return state.rounds;
+  },
+  getCurrentRoundDetails(state) {
+    return state.rounds.find((round) => round.roundNumber === state.currentRoundNumber);
+  },
 };
 
 const mutations = {
-  SET_HORSES(state, horses) {
-    state.horses = horses;
+  SET_ROUNDS(state, rounds) {
+    state.rounds = rounds;
   },
-  UPDATE_HORSE(state, updatedHorse) {
-    const index = state.horses.findIndex((h) => h.id === updatedHorse.id);
-    if (index !== -1) {
-      state.horses.splice(index, 1, updatedHorse);
-    }
+  SET_IS_RUNNING(state, isRunning) {
+    state.isRunning = isRunning;
+  },
+  SET_CURRENT_ROUND_NUMBER(state, currentRoundNumber) {
+    state.currentRoundNumber = currentRoundNumber;
   },
 };
 
 const actions = {
-  generateHorses({ commit }) {
-    const horses = [];
+  generateSchedule({ commit, rootGetters }) {
+    const allHorses = rootGetters['horses/getAllHorses'];
+    if (!allHorses || allHorses.length === 0) {
+      console.warn('Atlar henüz yüklenmemiş veya mevcut değil.');
+      return;
+    }
 
-    for (let i = 1; i <= MAX_HORSES; i++) {
-      horses.push({
-        id: i,
-        name: HORSE_NAMES[i - 1],
-        color: HORSE_COLORS[i - 1],
-        condition: Math.floor(Math.random() * 100) + 1,
+    const rounds = [];
+
+    for (let i = 1; i <= 6; i++) {
+      const shuffled = [...allHorses].sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 10);
+
+      rounds.push({
+        roundNumber: i,
+        distance: ROUND_DISTANCES[i - 1],
+        participants: selected,
+        result: [],
       });
     }
 
-    commit('SET_HORSES', horses);
+    commit('SET_ROUNDS', rounds);
+    commit('SET_CURRENT_ROUND_NUMBER', 1);
+  },
+  startRace({ commit }) {
+    commit('SET_IS_RUNNING', true);
+  },
+  finishRound({ commit }) {
+    commit('SET_IS_RUNNING', false);
+    commit('SET_CURRENT_ROUND_NUMBER', 0);
+  },
+  nextRound({ commit, state }) {
+    commit('SET_CURRENT_ROUND_NUMBER', state.currentRoundNumber + 1);
   },
 };
 
 export default {
-  // <<< Bu satırın mevcut ve doğru olduğundan emin ol!
   namespaced: true,
   state,
   getters,
