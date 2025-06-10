@@ -1,21 +1,19 @@
 <template>
-  <div class="text-3xl font-bold text-green-600">
-    <div v-if="allHorses.length > 0">
-      <vue-good-table :columns="columns" :rows="allHorses">
-        <template #table-row="props">
-          <span v-if="props.column.field === 'name'">
-            {{ props.row.name }}
-            <HorseIcon
-              :currentColor="props.row.color"
-              :style="[{ width: '16px', height: '16px' }]"
-            ></HorseIcon>
-          </span>
-          <span v-else>
-            {{ props.formattedRow[props.column.field] }}
-          </span>
-        </template>
-      </vue-good-table>
-    </div>
+  <div v-if="allHorses.length > 0">
+    <vue-good-table :columns="columns" :rows="allHorses">
+      <template #table-row="props">
+        <span v-if="props.column.field === 'name'">
+          {{ props.row.name }}
+          <HorseIcon
+            :currentColor="props.row.color"
+            :style="[{ width: '16px', height: '16px' }]"
+          ></HorseIcon>
+        </span>
+        <span v-else>
+          {{ props.formattedRow[props.column.field] }}
+        </span>
+      </template>
+    </vue-good-table>
   </div>
 </template>
 

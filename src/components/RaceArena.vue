@@ -9,6 +9,9 @@
           :style="{ transform: `translateX(${position}px)  scaleX(-1)` }"
         ></HorseIcon>
       </div>
+      <div>
+        {{ `${currentRound.roundNumber}. Lap - ${currentRound.distance}m` }}
+      </div>
     </template>
   </div>
 </template>
