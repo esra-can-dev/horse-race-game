@@ -1,16 +1,23 @@
 <template>
   <div class="text-3xl font-bold text-green-600">
     Horse Racing Game 🐎:
-    {{ el }}
+    <div v-for="horse in allHorses" :key="horse.id">
+      {{ horse.name }} - {{ horse.color }} (Condition: {{ horse.condition }})
+    </div>
   </div>
 </template>
-<script setup>
-import { ref, onMounted } from 'vue';
 
-const el = ref();
+<script setup>
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
 
 onMounted(() => {
-  generateHorses();
-  el.value = getAllHorses();
+  store.dispatch('horses/generateHorses');
+});
+
+const allHorses = computed(() => {
+  return store.getters['horses/getAllHorses'];
 });
 </script>

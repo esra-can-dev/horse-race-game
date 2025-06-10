@@ -1,10 +1,54 @@
-// state: {
-//   rounds: [],         // 6 round (roundNumber, distance, participants, result)
-//   currentRound: 0,
-//   isRunning: false
-// }
-// mutations/actions:
-// - generateSchedule() // 6 round'u oluştur, her birine 10 random horse ata
-// - startRace()
-// - finishRound(roundNumber, result)
-// - nextRound()
+// store/modules/horses.js
+
+import { HORSE_COLORS, HORSE_NAMES, MAX_HORSES } from '@/constants/horseAttributes';
+
+const state = () => ({
+  horses: [],
+});
+
+const getters = {
+  // getAllHorses(state) {
+  //   return state.horses;
+  // },
+  // getHorseById: (state) => (id) => {
+  //   return state.horses.find((horse) => horse.id === id);
+  // },
+};
+
+const mutations = {
+  SET_HORSES(state, horses) {
+    state.horses = horses;
+  },
+  UPDATE_HORSE(state, updatedHorse) {
+    const index = state.horses.findIndex((h) => h.id === updatedHorse.id);
+    if (index !== -1) {
+      state.horses.splice(index, 1, updatedHorse);
+    }
+  },
+};
+
+const actions = {
+  generateHorses({ commit }) {
+    const horses = [];
+
+    for (let i = 1; i <= MAX_HORSES; i++) {
+      horses.push({
+        id: i,
+        name: HORSE_NAMES[i - 1],
+        color: HORSE_COLORS[i - 1],
+        condition: Math.floor(Math.random() * 100) + 1,
+      });
+    }
+
+    commit('SET_HORSES', horses);
+  },
+};
+
+export default {
+  // <<< Bu satırın mevcut ve doğru olduğundan emin ol!
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions,
+};

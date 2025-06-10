@@ -1,0 +1,10 @@
+// jsconfig.json
+{
+  "compilerOptions": {
+    "baseUrl": ".", // Dosyaların bulunacağı temel dizin (proje kökü)
+    "paths": {
+      "@/*": ["src/*"] // '@' takma adının 'src' dizini altındaki her şeye işaret etmesini sağla
+    }
+  },
+  "include": ["src/**/*.js", "src/**/*.vue", "src/**/*.ts"] // Hangi dosyaları içereceğini belirt
+}
