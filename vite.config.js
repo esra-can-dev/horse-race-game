@@ -5,7 +5,9 @@ import { fileURLToPath, URL } from 'node:url';
 export default defineConfig({
   plugins: [vue()],
   test: {
+    globals: true,
     environment: 'jsdom',
+    setupFiles: './vitest.setup.js',
   },
   server: {
     port: 3030,
