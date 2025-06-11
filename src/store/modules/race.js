@@ -25,6 +25,11 @@ const mutations = {
   SET_CURRENT_ROUND_NUMBER(state, currentRoundNumber) {
     state.currentRoundNumber = currentRoundNumber;
   },
+  saveRoundResults(state, payload) {
+    const { results, roundNumber } = payload;
+    state.rounds.find((round) => round.roundNumber === roundNumber).result = results || [];
+    console.log(state.rounds);
+  },
 };
 
 const actions = {

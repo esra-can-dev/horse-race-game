@@ -1,12 +1,15 @@
 <template>
   <div class="race-arena">
     <button @click="startRace">Start / Pause</button>
-    <button @click="nextRound">Next Round</button>
+    <button @click="isPaused ? resumeRace() : pauseRace()">
+      {{ isPaused ? 'Continue' : 'Pause' }}
+    </button>
+    <!-- <button @click="nextRound">Next Round</button> -->
     <template v-if="currentRound">
       <div v-for="horse in currentRound.participants" :key="horse.id" class="d-flex">
         <HorseIcon
           :currentColor="horse.color"
-          :style="{ transform: `translateX(${position}px)  scaleX(-1)` }"
+          :style="{ transform: `translateX(${horsePositions[horse.id] || 0}px) scaleX(-1)` }"
         ></HorseIcon>
       </div>
       <div>
@@ -17,37 +20,19 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
+import { useRaceAnimation } from '@/composables/useRaceAnimation.js';
 import HorseIcon from '@/components/HorseIcon.vue';
 
 const store = useStore();
+const currentRound = computed(() => store.getters['race/getCurrentRoundDetails']);
 
-const currentRound = computed(() => {
-  return store.getters['race/getCurrentRoundDetails'];
-});
-
-const position = ref(0);
-const startRace = () => {
-  store.dispatch('race/startRace');
-
-  let start = 0;
-  const target = 300;
-  const duration = 3000; // ms
-  const stepTime = 16; // ~60fps
-
-  const step = () => {
-    if (start < target) {
-      start += target / (duration / stepTime);
-      position.value = start;
-      requestAnimationFrame(step);
-    }
-  };
-
-  step();
-};
+const { isPaused, horsePositions, startRace, pauseRace, resumeRace, resetRace } =
+  useRaceAnimation(currentRound);
 
 const nextRound = () => {
+  resetRace();
   store.dispatch('race/nextRound');
 };
 </script>
