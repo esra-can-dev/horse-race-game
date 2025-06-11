@@ -23,7 +23,7 @@ const props = defineProps({
   },
   variant: {
     type: String,
-    default: 'primary', // 'secondary', 'danger' gibi
+    default: 'primary',
   },
 });
 

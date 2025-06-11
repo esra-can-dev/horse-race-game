@@ -1,7 +1,7 @@
 <template>
   <div class="horse-list">
     <h2 class="sub-title">Horse List</h2>
-    <div v-if="allHorses.length > 0" class="scrollable-table">
+    <div v-if="allHorses.length" class="scrollable-table">
       <vue-good-table
         :columns="columns"
         :rows="allHorses"

@@ -18,3 +18,5 @@ export const RESULT_TABLE_COLUMNS = [
     field: 'name',
   },
 ];
+
+export const NUMBER_OF_ROUNDS = 6;

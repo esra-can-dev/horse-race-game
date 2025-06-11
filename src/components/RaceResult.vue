@@ -3,7 +3,7 @@
     <h2 class="sub-title">Results</h2>
     <div class="scrollable-table">
       <div v-for="round in rounds" :key="round.roundNumber" class="race-result__round">
-        <template v-if="round.result.length > 0">
+        <template v-if="round.result.length">
           <div class="sub-title">
             <strong>
               {{ `${round.roundNumber}. Lap - ${round.distance}m` }}
