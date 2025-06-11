@@ -13,6 +13,9 @@ const getters = {
   getCurrentRoundDetails(state) {
     return state.rounds.find((round) => round.roundNumber === state.currentRoundNumber);
   },
+  getCurrentRoundNumber(state) {
+    return state.currentRoundNumber;
+  },
 };
 
 const mutations = {
@@ -25,10 +28,18 @@ const mutations = {
   SET_CURRENT_ROUND_NUMBER(state, currentRoundNumber) {
     state.currentRoundNumber = currentRoundNumber;
   },
-  saveRoundResults(state, payload) {
+  SAVE_ROUND_RESULTS(state, payload) {
     const { results, roundNumber } = payload;
     state.rounds.find((round) => round.roundNumber === roundNumber).result = results || [];
-    console.log(state.rounds);
+  },
+  RESET_RACE(state) {
+    state.rounds = [];
+    state.currentRoundNumber = 0;
+    state.isRunning = false;
+  },
+  FINISH_RACE(state) {
+    state.currentRoundNumber = 0;
+    state.isRunning = false;
   },
 };
 
@@ -57,12 +68,14 @@ const actions = {
     commit('SET_ROUNDS', rounds);
     commit('SET_CURRENT_ROUND_NUMBER', 1);
   },
-  startRace({ commit }) {
+  startIsRunning({ commit }) {
     commit('SET_IS_RUNNING', true);
   },
-  finishRound({ commit }) {
-    commit('SET_IS_RUNNING', false);
-    commit('SET_CURRENT_ROUND_NUMBER', 0);
+  resetGame({ commit }) {
+    commit('RESET_RACE');
+  },
+  finishGame({ commit }) {
+    commit('FINISH_RACE');
   },
   nextRound({ commit, state }) {
     commit('SET_CURRENT_ROUND_NUMBER', state.currentRoundNumber + 1);

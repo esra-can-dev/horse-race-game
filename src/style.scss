@@ -1,0 +1,73 @@
+@use './styles/color.scss' as *;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  max-height: 100vh;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 30px;
+  padding: 2rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.sub-title {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background: $color-aliceblue;
+  border-radius: 8px;
+  padding: 4px 16px;
+}
+
+table.vgt-table td {
+  padding: 0.25em !important;
+}
+
+.vgt-table thead th {
+  padding: 0.5em 1em !important;
+}
+
+.scrollable-table {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.scrollable-table::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f0f0f0;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}

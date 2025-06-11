@@ -9,7 +9,7 @@ export const PROGRAM_TABLE_COLUMNS = [
 
 export const RESULT_TABLE_COLUMNS = [
   {
-    label: 'Position',
+    label: '#',
     field: 'position',
     type: 'number',
   },
