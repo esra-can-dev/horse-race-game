@@ -1,9 +1,9 @@
 <template>
   <RaceControls />
-  <div class="flex game-view">
+  <div class="game-view">
     <HorseList />
     <RaceArena />
-    <div class="flex">
+    <div class="game-view__info">
       <RaceProgram />
       <RaceResult />
     </div>
@@ -33,5 +33,10 @@ provide('raceAnimation', raceAnimation);
 
 .game-view {
   gap: 2rem;
+  display: flex;
+
+  &__info {
+    display: flex;
+  }
 }
 </style>

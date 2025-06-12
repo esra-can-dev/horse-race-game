@@ -5,14 +5,7 @@ import eslintJs from '@eslint/js';
 
 export default [
   {
-    ignores: [
-      'dist/',
-      'node_modules/',
-      '.vscode/',
-      './.prettierrc.cjs',
-      './cypress.config.js',
-      './tailwind.config.js',
-    ],
+    ignores: ['dist/', 'node_modules/', '.vscode/', './.prettierrc.cjs', './cypress.config.js'],
   },
   eslintJs.configs.recommended,
   {

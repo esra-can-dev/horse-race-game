@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-between items-center game-view-header">
+  <div class="game-view-header">
     <h1>Horse Racing 🐎</h1>
-    <div class="text-center">
+    <div>
       <BaseButton class="game-view-header__button" @click="generateProgram"
         >Generate Program</BaseButton
       >
@@ -54,6 +54,9 @@ const resetGame = () => {
 @use '../styles/color.scss' as *;
 
 .game-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: $color-aliceblue;
   padding: 0 16px;
   border-radius: 8px;
