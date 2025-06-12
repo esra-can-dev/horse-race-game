@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "cy:open": "cypress open",
     "test:e2e": "start-server-and-test dev http://localhost:3030 cy:open",
-    "test": "vitest",
+    "test:unit": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix",
     "format": "prettier --write . --ignore-path .prettierignore",
     "lint:fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix && prettier --write . --ignore-path .prettierignore"
