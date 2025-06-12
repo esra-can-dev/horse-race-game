@@ -10,7 +10,7 @@ The app is deployed on Google Cloud Run and accessible at:
 
 ---
 
-## ⚙️ Tech Stack
+### ⚙️ Tech Stack
 
 - **Frontend**: Vue 3 + Vite
 - **State Management**: Vuex 4
@@ -23,7 +23,7 @@ The app is deployed on Google Cloud Run and accessible at:
 
 ---
 
-## 🧩 Features
+### 🧩 Features
 
 - 🐎 Generate up to 20 unique horses (with name, condition score, and color)
 - 🏁 Auto-scheduling of 6 racing rounds with randomized horses
@@ -75,6 +75,6 @@ npm run test:e2e
 npm run lint
 ```
 
-## Recommended IDE Setup
+### Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/)
